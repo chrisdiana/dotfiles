@@ -5,6 +5,7 @@
 
 alias editbash='sudo vi ~/.dotfiles/.bash_profile'
 alias editvimrc='vi ~/.dotfiles/.vimrc'
+alias prefs='cd ~/.dotfiles'
 
 # Utilities
 # -----------------------------------------------------
