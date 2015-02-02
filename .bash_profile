@@ -1,42 +1,25 @@
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-DATE=`date +%Y-%m-%d`
-# export PATH="$(brew --prefix homebrew/php/php54)/bin:$PATH"
-alias note='vi ~/Google\ Drive/Work/notes.md'
-alias editbash='sudo vi ~/dotfiles/.bash_profile'
+# Chris' Bash Profile
+
+# Shortcuts
+# -----------------------------------------------------
+
+alias editbash='sudo vi ~/.dotfiles/.bash_profile'
 alias editvimrc='vi ~/.dotfiles/.vimrc'
-
-# MAMP
-# -----------------------------------------------------
-alias phpmamp='/Applications/MAMP/bin/php/php5.2.17/bin/php'
-alias mamp='cd /Applications/MAMP/htdocs'
-alias mphplog='tail -f /Applications/MAMP/logs/php_error.log'
-alias mapachelog='tail -f /Applications/MAMP/logs/apache_error.log'
-alias mmysqllog='tail -f /Applications/MAMP/logs/mysql_error.log'
-alias editmphplog='sudo vi /Applications/MAMP/logs/php_error.log'
-
-
-# Blog
-# -----------------------------------------------------
-newJekyllPost() {
-	cp ~/Sites/cdmedia.github.io/_posts/2014-01-01-post-template.md ~/Sites/cdmedia.github.io/_posts/$DATE-$1.md
-	vi ~/Sites/cdmedia.github.io/_posts/$DATE-$1.md
-}
-alias newpost=newJekyllPost
-alias editpost='vi ~/Sites/cdmedia.github.io/_posts'
-alias editlinks='vi ~/Sites/cdmedia.github.io/links.md'
-alias blog='cd ~/Sites/cdmedia.github.io/'
-alias blogcommit='git commit -a -m "blog updates"'
 
 # Utilities
 # -----------------------------------------------------
+
 alias ll="ls -la"
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 # Ensure user-installed binaries take precedence
 export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
 # Load .bashrc if it exists
 test -f ~/.bashrc && source ~/.bashrc
+
+# Colors
+# -----------------------------------------------------
 
 # Make ls use colors
 export CLICOLOR=1
