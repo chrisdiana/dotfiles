@@ -4,7 +4,7 @@
 [push]
 	default = current
 [core]
-	excludesfile = /Users/chrisdiana/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [color]
 	ui = auto
 [alias]
