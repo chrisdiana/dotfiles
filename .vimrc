@@ -1,42 +1,234 @@
-syntax on
-syntax enable
-colorscheme molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
-hi Normal          ctermfg=252 ctermbg=none
-"filetype options
+" Chris' VIMrc
+
+" Theme {{{
+" =============================================================================
+
+" set theme
+colorscheme itg_flat
+
+set t_Co=256
+set background=dark
+"let g:rehash256 = 1
+
+"hi Normal ctermfg=252 ctermbg=none
+
+set guifont=Menlo:h14
+
+" }}}
+
+" Spaces & Tabs {{{
+" =============================================================================
+
+set autoindent			" indenting on
+set smartindent			" does the right thing (mostly)
+set tabstop=4			" number of visual spaces per TAB
+set softtabstop=0		" number of spaces in TAB when editing
+set noexpandtab			" tabs are not spaces
+set shiftwidth=4		" how many spaces are reindented when shifting
+"set paste				" fix indent when pasting
+" set expandtab
+"set smarttab
+
+" }}}
+
+" Layout {{{
+" =============================================================================
+
+syntax enable			" enable syntax processing
+set number				" show line numbers
+set showcmd				" show command in bottom bar
+set cursorline			" highlight current line
+set wildmenu			" visual autocomplete for command menu
+set nowrap				" nowrap fix (can be wrap for small screens)
+set textwidth=80		" if wrap is used re-format wrap to 80
+"set colorcolumn=80		" add a ruler at 80
+"highlight ColorColumn guibg=Gray12
+set laststatus=2
+set splitbelow			" open horizontal splits below current window
+" }}}
+
+" Searching {{{
+" =============================================================================
+
+set showmatch			" highlight matching
+set incsearch			" search as characters are entered
+set hlsearch			" highlight matches
+set ignorecase			" ignore case when searching
+set smartcase			" use case if any case is used
+" }}}
+
+" Folding {{{
+" =============================================================================
+
+set foldenable			" enable folding
+set foldlevelstart=10	" open most folds by default
+set foldnestmax=10		" 10 nested fold max
+set foldmethod=indent	" fold based on indent level (marker,expr,syntax,diff)
+" }}}
+
+" Other Settings {{{
+" =============================================================================
+
+" Optimize for fast terminal connections
+set ttyfast
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use unix as the standard file type
+set fileformats=unix,dos,mac
+
+" Map Leader to comma
+let mapleader = ","
+let g:mapleader = ","
+
+set modelines=1			" use specific settings at bottom only for this file
+set timeoutlen=500		" fixes slight lag after typing the leader key + command
 filetype on
 filetype plugin on
 filetype indent on
-"Display current cursor position in lower right corner.
-set ruler
-"Ever notice a slight lag after typing the leader key + command? This lowers
-"the timeout.
-set timeoutlen=500
-"Set font type and size. Depends on the resolution. Larger screens, prefer h20
-set guifont=Menlo:h14
-"Show command in bottom right portion of the screen
-set showcmd
-"Show lines numbers
-set number
-"Indent stuff
-set smartindent
-set autoindent
-"Better line wrapping
-set wrap
-set textwidth=79
-set formatoptions=qrn1
-"Set incremental searching"
-set incsearch
-"Highlight searching
-set hlsearch
-" case insensitive search
-set ignorecase
-set smartcase
-"Enable code folding
-set foldenable
-"Split windows below the current window.
-set splitbelow
-"Map escape key to jj -- much faster
+set paste
+
+" }}}
+
+" FileType Specific {{{
+" =============================================================================
+
+" PHP - activate by ctrl-n in insert mode or ctrl-x,ctrl-o
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
+" Javascript
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+
+" HTML
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+
+" CSS
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+" Markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd Filetype markdown setlocal wrap
+autocmd Filetype markdown setlocal linebreak
+autocmd Filetype markdown setlocal nolist
+autocmd Filetype markdown setlocal spell!
+
+" }}}
+
+" Remapped Keys {{{
+" =============================================================================
+
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
+" space open/closes folds
+nnoremap <space> za
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
+" jj is escape
 imap jj <esc>
-silent! map <F2> :NERDTreeToggle<CR>
+
+" Close current buffer
+nnoremap <leader>bx :Bclose<cr>
+
+" Close all buffers
+nnoremap <leader>bxa :1,1000 bd!<cr>
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
+" Plugin remapped keys
+" ===================
+
+" toggle nerdtree
+silent! map tt :NERDTreeToggle<CR>
+
+" }}}
+
+" Plugin Settings {{{
+" =============================================================================
+
+" CtrlP settings
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+
+" Vexplore toggle function settings
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+set autochdir
+
+" }}}
+
+" Custom Functions {{{
+" =============================================================================
+
+" strips trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" autosave session on exit
+au VimLeavePre * if v:this_session != '' | exec "mks! " . v:this_session | endif
+
+" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+    if exists("t:expl_buf_num")
+        let expl_win_num = bufwinnr(t:expl_buf_num)
+        if expl_win_num != -1
+            let cur_win_nr = winnr()
+            exec expl_win_num . 'wincmd w'
+            close
+            exec cur_win_nr . 'wincmd w'
+            unlet t:expl_buf_num
+        else
+            unlet t:expl_buf_num
+        endif
+    else
+        exec '1wincmd w'
+        Vexplore
+        let t:expl_buf_num = bufnr("%")
+    endif
+endfunction
+map <silent> <C-E> :call ToggleVExplorer()<CR>
+
+" Custom Statusline
+set statusline=
+set statusline+=%7*\[%n]                                  "buffernr
+set statusline+=%1*\ %<%F\                                "File+path
+set statusline+=%6*\ %{fugitive#statusline()}\            "git status line
+set statusline+=%2*\ %y\                                  "FileType
+set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
+set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+set statusline+=%4*\ %{&ff}\                              "FileFormat(dos/unix..)
+set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
+set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
+set statusline+=%9*\ col:%03c\                            "Colnr
+set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
+function! HighlightSearch()
+    if &hls
+        return 'H'
+    else
+        return ''
+    endif
+endfunction
+hi User2 ctermbg=grey  ctermfg=black guibg=grey  guifg=black
+hi User6 ctermbg=blue  ctermfg=black guibg=blue  guifg=black
+hi User1 ctermbg=black ctermfg=white   guibg=black guifg=white
+
+" }}}
+
+
+" vim:foldmethod=marker:foldlevel=0
