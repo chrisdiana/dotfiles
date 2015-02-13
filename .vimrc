@@ -181,9 +181,6 @@ set autochdir
 " strips trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
-" autosave session on exit
-au VimLeavePre * if v:this_session != '' | exec "mks! " . v:this_session | endif
-
 " Toggle Vexplore with Ctrl-E
 function! ToggleVExplorer()
     if exists("t:expl_buf_num")
@@ -225,9 +222,13 @@ function! HighlightSearch()
         return ''
     endif
 endfunction
+hi User1 ctermbg=black ctermfg=white   guibg=black guifg=white
 hi User2 ctermbg=grey  ctermfg=black guibg=grey  guifg=black
 hi User6 ctermbg=blue  ctermfg=black guibg=blue  guifg=black
-hi User1 ctermbg=black ctermfg=white   guibg=black guifg=white
+
+" autosave session on exit
+au VimLeavePre * if v:this_session != '' | exec "mks! " . v:this_session | endif
+
 
 " }}}
 
