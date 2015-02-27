@@ -1,18 +1,45 @@
 " Chris' VIMrc
 
+" Plugins {{{
+" =============================================================================
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Plugins
+Plugin 'gmarik/vundle'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'vim-scripts/php.vim--Garvin'
+" Plugin 'Shougo/neocomplcache.vim'
+
+" Themes
+Plugin 'cdmedia/itg_flat_vim'
+Plugin 'sickill/vim-monokai'
+
+filetype plugin indent on
+" }}}
+
 " Theme {{{
 " =============================================================================
 
 " set theme
 colorscheme itg_flat
 
-set t_Co=256
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions-=e
+    set t_Co=256
+ 	let g:rehash256 = 1
+   	set guitablabel=%M\ %t
+endif
+
 set background=dark
-"let g:rehash256 = 1
-
 "hi Normal ctermfg=252 ctermbg=none
-
-set guifont=Menlo:h14
+"set guifont=Menlo:h14
 
 " }}}
 
@@ -43,8 +70,39 @@ set nowrap				" nowrap fix (can be wrap for small screens)
 set textwidth=80		" if wrap is used re-format wrap to 80
 "set colorcolumn=80		" add a ruler at 80
 "highlight ColorColumn guibg=Gray12
-set laststatus=2
 set splitbelow			" open horizontal splits below current window
+" }}}
+
+" Status Line {{{
+" =============================================================================
+
+" Always show the status line
+set laststatus=2
+
+" Custom Statusline
+set statusline=
+set statusline+=%7*\[%n]                                  "buffernr
+set statusline+=%1*\ %<%F\                                "File+path
+set statusline+=%6*\ %{fugitive#statusline()}\            "git status line
+set statusline+=%2*\ %y\                                  "FileType
+set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
+set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+set statusline+=%4*\ %{&ff}\                              "FileFormat(dos/unix..)
+set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
+set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
+set statusline+=%9*\ col:%03c\                            "Colnr
+set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
+function! HighlightSearch()
+    if &hls
+        return 'H'
+    else
+        return ''
+    endif
+endfunction
+hi User1 ctermbg=black ctermfg=white   guibg=black guifg=white
+hi User2 ctermbg=grey  ctermfg=black guibg=grey  guifg=black
+hi User6 ctermbg=blue  ctermfg=black guibg=blue  guifg=black
+
 " }}}
 
 " Searching {{{
@@ -92,12 +150,23 @@ filetype plugin on
 filetype indent on
 set paste
 
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" If you prefer the Omni-Completion tip window to close when a selection is
+" made, these lines close it on movement in insert mode or when leaving
+" insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
 " }}}
 
 " FileType Specific {{{
 " =============================================================================
 
 " PHP - activate by ctrl-n in insert mode or ctrl-x,ctrl-o
+" php lint - :!php -l %
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " Javascript
@@ -150,6 +219,16 @@ nnoremap <leader>bxa :1,1000 bd!<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
+
 " Plugin remapped keys
 " ===================
 
@@ -167,11 +246,11 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 
 " Vexplore toggle function settings
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 20
-let g:netrw_dirhistmax = 0
-set autochdir
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 20
+" let g:netrw_dirhistmax = 0
+" set autochdir
 
 " }}}
 
@@ -182,55 +261,30 @@ set autochdir
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Toggle Vexplore with Ctrl-E
-function! ToggleVExplorer()
-    if exists("t:expl_buf_num")
-        let expl_win_num = bufwinnr(t:expl_buf_num)
-        if expl_win_num != -1
-            let cur_win_nr = winnr()
-            exec expl_win_num . 'wincmd w'
-            close
-            exec cur_win_nr . 'wincmd w'
-            unlet t:expl_buf_num
-        else
-            unlet t:expl_buf_num
-        endif
-    else
-        exec '1wincmd w'
-        Vexplore
-        let t:expl_buf_num = bufnr("%")
-    endif
-endfunction
-map <silent> <C-E> :call ToggleVExplorer()<CR>
+"function! ToggleVExplorer()
+"    if exists("t:expl_buf_num")
+"        let expl_win_num = bufwinnr(t:expl_buf_num)
+"        if expl_win_num != -1
+"            let cur_win_nr = winnr()
+"            exec expl_win_num . 'wincmd w'
+"            close
+"            exec cur_win_nr . 'wincmd w'
+"            unlet t:expl_buf_num
+"        else
+"            unlet t:expl_buf_num
+"        endif
+"    else
+"        exec '1wincmd w'
+"        Vexplore
+"        let t:expl_buf_num = bufnr("%")
+"    endif
+"endfunction
+"map <silent> <C-E> :call ToggleVExplorer()<CR>
 
-" Custom Statusline
-set statusline=
-set statusline+=%7*\[%n]                                  "buffernr
-set statusline+=%1*\ %<%F\                                "File+path
-set statusline+=%6*\ %{fugitive#statusline()}\            "git status line
-set statusline+=%2*\ %y\                                  "FileType
-set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-set statusline+=%4*\ %{&ff}\                              "FileFormat(dos/unix..)
-set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
-set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
-set statusline+=%9*\ col:%03c\                            "Colnr
-set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
-function! HighlightSearch()
-    if &hls
-        return 'H'
-    else
-        return ''
-    endif
-endfunction
-hi User1 ctermbg=black ctermfg=white   guibg=black guifg=white
-hi User2 ctermbg=grey  ctermfg=black guibg=grey  guifg=black
-hi User6 ctermbg=blue  ctermfg=black guibg=blue  guifg=black
 
 " autosave session on exit
-au VimLeavePre * if v:this_session != '' | exec "mks! " . v:this_session | endif
-
+"au VimLeavePre * if v:this_session != '' | exec 'mks! ' . v:this_session | endif
 
 " }}}
-
 
 " vim:foldmethod=marker:foldlevel=0
