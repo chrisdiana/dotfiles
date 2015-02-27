@@ -4,11 +4,11 @@
 " =============================================================================
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Plugins
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
@@ -19,6 +19,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'cdmedia/itg_flat_vim'
 Plugin 'sickill/vim-monokai'
 
+call vundle#end()
 filetype plugin indent on
 " }}}
 
