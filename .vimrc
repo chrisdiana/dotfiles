@@ -90,8 +90,9 @@ set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
 set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
 set statusline+=%4*\ %{&ff}\                              "FileFormat(dos/unix..)
 set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
-set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
-set statusline+=%9*\ col:%03c\                            "Colnr
+set statusline+=%8*\ %=\ %l/%L\              				"Rownumber/total (%)
+"set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
+"set statusline+=%9*\ col:%03c\                            "Colnr
 set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
 function! HighlightSearch()
     if &hls
@@ -100,9 +101,16 @@ function! HighlightSearch()
         return ''
     endif
 endfunction
-hi User1 ctermbg=black ctermfg=white   guibg=black guifg=white
-hi User2 ctermbg=grey  ctermfg=black guibg=grey  guifg=black
-hi User6 ctermbg=blue  ctermfg=black guibg=blue  guifg=black
+" File path
+hi User1 ctermbg=237 guibg=237 ctermfg=250 guifg=250
+" Git status
+hi User6 ctermfg=250 guifg=250 guibg=25  ctermbg=25
+" File type
+hi User2 ctermfg=234 guifg=234 ctermbg=32 guibg=32
+hi User3 ctermfg=237 guifg=237
+hi User4 ctermfg=237 guifg=237
+hi User5 ctermfg=237 guifg=237
+hi User8 ctermfg=237 guifg=237
 
 " }}}
 
