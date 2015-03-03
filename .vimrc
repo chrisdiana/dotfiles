@@ -13,7 +13,6 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'vim-scripts/php.vim--Garvin'
-" Plugin 'Shougo/neocomplcache.vim'
 
 " Themes
 Plugin 'cdmedia/itg_flat_vim'
@@ -47,14 +46,14 @@ set background=dark
 " Spaces & Tabs {{{
 " =============================================================================
 
-set autoindent			" indenting on
 set smartindent			" does the right thing (mostly)
+set autoindent			" indenting on
 set tabstop=4			" number of visual spaces per TAB
 set softtabstop=0		" number of spaces in TAB when editing
 set noexpandtab			" tabs are not spaces
 set shiftwidth=4		" how many spaces are reindented when shifting
 "set paste				" fix indent when pasting
-" set expandtab
+"set expandtab
 "set smarttab
 
 " }}}
@@ -157,7 +156,6 @@ set timeoutlen=500		" fixes slight lag after typing the leader key + command
 filetype on
 filetype plugin on
 filetype indent on
-set paste
 
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -238,6 +236,10 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext
 
+" Auto complete
+"iabbrev </ </<C-X><C-O>
+imap <C-Space> <C-X><C-O>
+
 " Plugin remapped keys
 " ===================
 
@@ -268,6 +270,7 @@ let g:ctrlp_working_path_mode = 0
 
 " strips trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
+
 
 " Toggle Vexplore with Ctrl-E
 "function! ToggleVExplorer()
