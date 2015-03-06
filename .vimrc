@@ -12,7 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
-"Plugin 'vim-scripts/php.vim--Garvin'
+Plugin 'terryma/vim-smooth-scroll'
 
 " Themes
 Plugin 'cdmedia/itg_flat_vim'
@@ -188,7 +188,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 " Markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd Filetype markdown setlocal wrap
-autocmd Filetype markdown setlocal linebreak
+"autocmd Filetype markdown setlocal linebreak
 autocmd Filetype markdown setlocal nolist
 autocmd Filetype markdown setlocal spell!
 
@@ -240,12 +240,6 @@ map <leader>t<leader> :tabnext
 "iabbrev </ </<C-X><C-O>
 imap <C-Space> <C-X><C-O>
 
-" Plugin remapped keys
-" ===================
-
-" toggle nerdtree
-silent! map tt :NERDTreeToggle<CR>
-
 " }}}
 
 " Plugin Settings {{{
@@ -263,6 +257,12 @@ let g:ctrlp_working_path_mode = 0
 " let g:netrw_dirhistmax = 0
 " set autochdir
 
+" Plugin remapped keys
+" ===================
+
+" Toggle NERDTree
+silent! map tt :NERDTreeToggle<CR>
+
 " }}}
 
 " Custom Functions {{{
@@ -270,7 +270,6 @@ let g:ctrlp_working_path_mode = 0
 
 " strips trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
-
 
 " Toggle Vexplore with Ctrl-E
 "function! ToggleVExplorer()
@@ -292,7 +291,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 "    endif
 "endfunction
 "map <silent> <C-E> :call ToggleVExplorer()<CR>
-
 
 " autosave session on exit
 "au VimLeavePre * if v:this_session != '' | exec 'mks! ' . v:this_session | endif
