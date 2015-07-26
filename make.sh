@@ -12,6 +12,9 @@ files="bashrc vimrc vim gitconfig"    	# list of files/folders to symlink in hom
 
 ##########
 
+#move dotfiles to .dotfiles hidden folder
+mv ~/dotfiles $dir
+
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir

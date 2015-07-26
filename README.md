@@ -1,6 +1,6 @@
 ## Dotfiles
 
-Run `sh ~/.dotfiles/make.sh' to create a new dotfiles directory and symlink appropriate files. Then,
+Run `sh ~/dotfiles/make.sh' to create a new dotfiles directory and symlink appropriate files. Then,
 on first Vim startup, run `:BundleInstall`. Restart Vim and you are good to go.
 
 * All dotfiles symlinked from `~/`
