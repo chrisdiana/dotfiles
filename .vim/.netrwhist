@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/chrisdiana/Sites/thesearchmonitor.com'
-let g:netrw_dirhist_2='/Users/chrisdiana/Sites/cdmedia.github.io/_posts'
-let g:netrw_dirhist_3='/Users/chrisdiana/Sites/thesearchmonitor.com/application'
-let g:netrw_dirhist_4='/Users/chrisdiana/Sites/cdmedia.github.io/_posts'
-let g:netrw_dirhist_5='/Users/chrisdiana/.dotfiles'
