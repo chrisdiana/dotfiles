@@ -1,0 +1,11 @@
+.DS_Store
+backups
+.netrwhist
+tmp
+spell
+after/.vimrc.after
+.vundles.local
+.vundles.local.bak
+bundle
+sessions
+.netrwhist
