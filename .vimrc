@@ -13,8 +13,8 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'terryma/vim-smooth-scroll'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-session'
 
 " Themes
 Plugin 'cdmedia/itg_flat_vim'
