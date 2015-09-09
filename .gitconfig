@@ -5,6 +5,7 @@
 	default = current
 [core]
 	excludesfile = ~/.gitignore_global
+	editor = /usr/bin/vim
 [color]
 	ui = auto
 [alias]
