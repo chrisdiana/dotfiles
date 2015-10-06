@@ -165,7 +165,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Allow for mouse scroll
-set mouse=nicr
+"set mouse=nicr
+set mouse=a
 
 " If you prefer the Omni-Completion tip window to close when a selection is
 " made, these lines close it on movement in insert mode or when leaving
@@ -252,6 +253,8 @@ imap <C-Space> <C-X><C-O>
 " Better tab switching
 nnoremap { gT
 nnoremap } gt
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Command line overrides
 ca tn tabnew
