@@ -15,7 +15,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
-"Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-session'
 
 " Themes
 Plugin 'cdmedia/itg_flat_vim'
@@ -223,6 +223,9 @@ nnoremap gV `[v`]
 " jj is escape
 imap jj <esc>
 
+" XX is quit all
+nnoremap XX :qa<CR>
+
 " Close current buffer
 nnoremap <leader>bx :Bclose<cr>
 
@@ -275,6 +278,10 @@ let g:ctrlp_working_path_mode = 0
 
 " Vim Notes settings
 let g:notes_directories = ['~/Documents/Notes', '~/Google\ Drive/Work/TheSearchMonitor/Notes']
+
+" Vim Session settings
+let g:session_autosave = 'yes'
+let g:session_directory = '~/Sessions'
 
 " Plugin remapped keys
 " ===================
