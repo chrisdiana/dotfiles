@@ -65,6 +65,3 @@ alias editpost='vi ~/Sites/cdmedia.github.io/_posts'
 alias editlinks='vi ~/Sites/cdmedia.github.io/links.md'
 alias blog='cd ~/Sites/cdmedia.github.io/'
 alias blogcommit='git commit -a -m "blog updates"'
-
-# RTV settings
-export RTV_EDITOR=vim

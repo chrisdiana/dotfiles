@@ -13,7 +13,8 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'terryma/vim-smooth-scroll'
-"Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
 "Plugin 'xolox/vim-session'
 
 " Themes
@@ -242,6 +243,16 @@ map <leader>t<leader> :tabnext
 "iabbrev </ </<C-X><C-O>
 imap <C-Space> <C-X><C-O>
 
+" Better tab switching
+nnoremap { gT
+nnoremap } gt
+
+" Command line overrides
+ca tn tabnew
+ca te tabedit
+ca th tabp
+ca tl tabn
+
 " }}}
 
 " Plugin Settings {{{
@@ -259,11 +270,15 @@ let g:ctrlp_working_path_mode = 0
 " let g:netrw_dirhistmax = 0
 " set autochdir
 
+" Vim Notes settings
+let g:notes_directories = ['~/Documents/Notes', '~/Google\ Drive/Work/TheSearchMonitor/Notes']
+
 " Plugin remapped keys
 " ===================
 
 " Toggle NERDTree
 silent! map tt :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
 
 " }}}
 
