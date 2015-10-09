@@ -20,6 +20,7 @@ Plugin 'xolox/vim-session'
 " Themes
 Plugin 'cdmedia/itg_flat_vim'
 Plugin 'sickill/vim-monokai'
+Plugin 'NLKNguyen/papercolor-theme'
 
 call vundle#end()
 filetype plugin indent on
@@ -30,6 +31,7 @@ filetype plugin indent on
 
 " set theme
 colorscheme itg_flat
+"colorscheme PaperColor
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -40,7 +42,7 @@ if has("gui_running")
    	set guitablabel=%M\ %t
 endif
 
-set background=dark
+"set background=dark
 "hi Normal ctermfg=252 ctermbg=none
 "set guifont=Menlo:h14
 
