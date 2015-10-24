@@ -33,6 +33,9 @@ filetype plugin indent on
 colorscheme itg_flat
 "colorscheme PaperColor
 
+" Override colorscheme to have no background
+autocmd ColorScheme * highlight Normal ctermbg=None guibg=none    ctermbg=none    guifg=#e0e0e0   ctermfg=254    	gui=none    cterm=none
+
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
@@ -42,7 +45,7 @@ if has("gui_running")
    	set guitablabel=%M\ %t
 endif
 
-"set background=dark
+set background=dark
 "hi Normal ctermfg=252 ctermbg=none
 "set guifont=Menlo:h14
 
@@ -176,6 +179,9 @@ set mouse=a
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
 " }}}
 
 " FileType Specific {{{
@@ -287,6 +293,7 @@ let g:notes_directories = ['~/Documents/Notes', '~/Google\ Drive/Work/TheSearchM
 " Vim Session settings
 let g:session_autosave = 'yes'
 let g:session_directory = '~/Sessions'
+set sessionoptions-=buffers
 
 " Plugin remapped keys
 " ===================
