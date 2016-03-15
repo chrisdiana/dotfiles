@@ -33,8 +33,10 @@ filetype plugin indent on
 colorscheme itg_flat
 "colorscheme PaperColor
 
+set background=dark
+
 " Override colorscheme to have no background
-autocmd ColorScheme * highlight Normal ctermbg=None guibg=none    ctermbg=none    guifg=#e0e0e0   ctermfg=254    	gui=none    cterm=none
+"autocmd ColorScheme * highlight Normal ctermbg=None guibg=none    ctermbg=none    guifg=#e0e0e0   ctermfg=254    	gui=none    cterm=none
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -45,7 +47,6 @@ if has("gui_running")
    	set guitablabel=%M\ %t
 endif
 
-set background=dark
 "hi Normal ctermfg=252 ctermbg=none
 "set guifont=Menlo:h14
 
@@ -205,7 +206,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd Filetype markdown setlocal wrap
 "autocmd Filetype markdown setlocal linebreak
 autocmd Filetype markdown setlocal nolist
-autocmd Filetype markdown setlocal spell!
+"autocmd Filetype markdown setlocal spell!
 
 " }}}
 
@@ -288,7 +289,7 @@ let g:ctrlp_working_path_mode = 0
 " set autochdir
 
 " Vim Notes settings
-let g:notes_directories = ['~/Documents/Notes', '~/Google\ Drive/Work/TheSearchMonitor/Notes']
+let g:notes_directories = ['~/Documents/Notes']
 
 " Vim Session settings
 let g:session_autosave = 'yes'
