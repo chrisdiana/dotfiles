@@ -3,9 +3,18 @@
 # Shortcuts
 # -----------------------------------------------------
 
-alias ll="ls -la"
+alias ll='ls -lah'
 alias ls='ls -Fa'
 alias prefs='cd ~/.dotfiles'
+
+alias http-server='python -m BasicHttpServer'
+#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+#export CLICOLOR=1
+#export LSCOLORS=GxFxCxDxBxegedabagaced
+
+alias ll='ls -lah'
+
+alias http-server='python -m BasicHttpServer'
 
 # Utilities
 # -----------------------------------------------------
@@ -52,16 +61,3 @@ C_BG_CYAN="\[\033[46m\]"
 C_BG_LIGHTGRAY="\[\033[47m\]"
 export PS1="\n$C_LIGHTGREEN\u$C_DARKGRAY@$C_BLUE\h $C_DARKGRAY: $C_LIGHTYELLOW\w\n$C_DARKGRAY\$$C_DEFAULT "
 TERM=xterm-256color
-
-# Blog
-# -----------------------------------------------------
-DATE=`date +%Y-%m-%d`
-newJekyllPost() {
-	cp ~/Sites/cdmedia.github.io/_posts/2014-01-01-post-template.md ~/Sites/cdmedia.github.io/_posts/$DATE-$1.md
-	vi ~/Sites/cdmedia.github.io/_posts/$DATE-$1.md
-}
-alias newpost=newJekyllPost
-alias editpost='vi ~/Sites/cdmedia.github.io/_posts'
-alias editlinks='vi ~/Sites/cdmedia.github.io/links.md'
-alias blog='cd ~/Sites/cdmedia.github.io/'
-alias blogcommit='git commit -a -m "blog updates"'
