@@ -5,7 +5,6 @@
 
 alias ll='ls -lah'
 alias ls='ls -Fa'
-alias http-server='python -m BasicHttpServer'
 
 # Colors
 # -----------------------------------------------------
