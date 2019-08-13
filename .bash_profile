@@ -5,7 +5,7 @@
 
 alias ll='ls -lah'
 alias ls='ls -Fa'
-alias http-server='python -m BasicHttpServer'
+#alias http-server='python -m BasicHttpServer'
 
 # Colors
 # -----------------------------------------------------
@@ -19,3 +19,5 @@ TERM=xterm-256color
 # Load local .bashrc if it exists
 test -f ~/.bashrc-local && source ~/.bashrc-local
 
+export PATH=~/.local/bin:$PATH
+alias ws='mosh chris@35.212.216.226'

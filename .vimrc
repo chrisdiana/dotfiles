@@ -6,6 +6,7 @@ filetype off
 filetype plugin indent on
 syntax enable
 
+"colorscheme monokai
 colorscheme itg_flat
 
 set shiftwidth=4
@@ -34,8 +35,10 @@ nnoremap <C-H> <C-W><C-H>
 
 autocmd BufWritePre * :%s/\s\+$//e
 
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
 " Web
-au BufRead,BufNewFile *.js,*.html,*.css
+au BufRead,BufNewFile *.js,*.html,*.css,*.vue,*.php
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
