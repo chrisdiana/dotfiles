@@ -37,6 +37,7 @@ inoremap jj <Esc>
 autocmd BufWritePre * :%s/\s\+$//e
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " Web
 au BufRead,BufNewFile *.js,*.html,*.css,*.vue,*.php
