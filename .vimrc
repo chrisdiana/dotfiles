@@ -25,6 +25,7 @@ set hlsearch
 set ignorecase
 set smartcase
 set encoding=utf-8
+"set colorcolumn=80
 
 nnoremap { gT
 nnoremap } gt
@@ -36,6 +37,10 @@ inoremap jj <Esc>
 
 autocmd BufWritePre * :%s/\s\+$//e
 
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
