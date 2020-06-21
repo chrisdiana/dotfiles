@@ -40,4 +40,4 @@ sendEmail() {
 # Utilities
 # -----------------------------------------------------
 # Load local .bashrc if it exists
-test -f ~/.bashrc-local && source ~/.bashrc-local
+test -f ~/.bashrc_local && source ~/.bashrc_local

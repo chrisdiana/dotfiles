@@ -26,6 +26,10 @@ set ignorecase
 set smartcase
 set encoding=utf-8
 "set colorcolumn=80
+set cm=blowfish2
+set backupdir=~/.vim/swapfiles/.backup/,/tmp//
+set directory=~/.vim/swapfiles/.swp/,/tmp//
+set undodir=~/.vim/swapfiles/.undo/,/tmp//
 
 nnoremap { gT
 nnoremap } gt
