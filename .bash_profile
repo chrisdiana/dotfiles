@@ -43,3 +43,4 @@ sendEmail() {
 
 # Utilities
 # -----------------------------------------------------
+alias t='vi -c "set nonumber" ~/todo.txt'

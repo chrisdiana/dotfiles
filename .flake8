@@ -1,0 +1,2 @@
+[flake8]
+format = %(row)d:%(col)d: %(code)s %(text)s

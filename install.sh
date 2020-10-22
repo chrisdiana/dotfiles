@@ -28,6 +28,7 @@ sudo pip install virtualenv
 sudo pip install haxor-news --upgrade --ignore-installed six
 sudo pip install pocket-cli
 sudo pip install rtv
+sudo pip install flake8 flake8-colors
 
 # Install custom apps
 mkdir /apps/
