@@ -25,7 +25,7 @@ set hlsearch
 set ignorecase
 set smartcase
 set encoding=utf-8
-set cm=blowfish2
+set cm=blowfish2 " use :X to encrypt
 set backupdir=~/.vim/swapfiles/.backup/,/tmp//
 set directory=~/.vim/swapfiles/.swp/,/tmp//
 set undodir=~/.vim/swapfiles/.undo/,/tmp//

@@ -1,8 +1,11 @@
-# Chris' Bash RC
+# Bash Profile
 
 # Shortcuts
 # -----------------------------------------------------
 alias ll='ls -lah'
+alias t='vi -c "set nonumber" "$PM_PATH"/todo.txt'
+alias ts='git -C $PM_PATH add . ; git -C $PM_PATH commit -am "updates"; git -C $PM_PATH push;'
+alias tg='git -C $PM_PATH pull;'
 
 # Colors
 # -----------------------------------------------------
@@ -40,6 +43,15 @@ sendEmail() {
     file=$3
     curl -n --ssl-reqd --mail-from "$from" --mail-rcpt "$to" --url smtps://smtp.gmail.com:465 -T $3
 }
+
+search(){
+    args="$@"
+    query=${args// /+}
+    url="https://google.com/search?q=$query"
+    w3m $url
+}
+
+alias g=search
 
 # Utilities
 # -----------------------------------------------------
