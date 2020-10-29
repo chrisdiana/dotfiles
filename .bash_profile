@@ -44,6 +44,11 @@ sendEmail() {
     curl -n --ssl-reqd --mail-from "$from" --mail-rcpt "$to" --url smtps://smtp.gmail.com:465 -T $3
 }
 
+lastLoggedInUsers() {
+    echo "Last logged in IPs"
+    last | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | uniq
+}
+
 search(){
     args="$@"
     query=${args// /+}
@@ -52,6 +57,7 @@ search(){
 }
 
 alias g=search
+alias lastuser=lastLoggedInUsers
 
 # Utilities
 # -----------------------------------------------------
