@@ -15,7 +15,7 @@ set expandtab
 set softtabstop=4
 set shiftround
 set autoindent
-set number
+set nonumber
 set showcmd
 set wildmenu
 set nowrap
@@ -62,6 +62,7 @@ au BufRead,BufNewFile *.js,*.html,*.css,*.vue,*.php,*.yml,*.json
 " PEP8
 autocmd BufWritePost *.py call Flake8()
 let g:flake8_cmd='flake8 --config ~/.dotfiles/.flake8'
+let g:flake8_quickfix_height=2
 highlight BadWhitespace ctermbg=red guibg=red
 au BufRead,BufNewFile *.py,*.pyw,*.r match BadWhitespace /^\t\+/
 au BufRead,BufNewFile *.py,*.pyw,*.r,*.c,*.h match BadWhitespace /\s\+$/
