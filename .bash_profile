@@ -58,7 +58,3 @@ search(){
 
 alias g=search
 alias lastuser=lastLoggedInUsers
-
-# Utilities
-# -----------------------------------------------------
-alias t='vi -c "set nonumber" ~/todo.txt'
