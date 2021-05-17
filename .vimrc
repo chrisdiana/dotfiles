@@ -70,9 +70,9 @@ au BufRead,BufNewFile *.py,*.pyw,*.r,*.c,*.h
     \ set tabstop=8 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-    \ set textwidth=79 |
+    "\ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix |
-    \ set colorcolumn=80 |
+    "\ set colorcolumn=80 |
     \ let python_highlight_all=1

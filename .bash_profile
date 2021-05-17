@@ -58,3 +58,23 @@ search(){
 
 alias g=search
 alias lastuser=lastLoggedInUsers
+
+
+# For Debian/Ubuntu
+function pretty_csv {
+    column -t -s, -n "$@" | less -F -S -X -K
+}
+function pretty_tsv {
+    column -t -s $'\t' -n "$@" | less -F -S -X -K
+}
+# For non-Debian systems
+function pretty_csv {
+    perl -pe 's/((?<=,)|(?<=^)),/ ,/g;' "$@" | column -t -s, | less  -F -S -X -K
+}
+function pretty_tsv {
+    perl -pe 's/((?<=\t)|(?<=^))\t/ \t/g;' "$@" | column -t -s $'\t' | less  -F -S -X -K
+}
+# cat file.csv | sed -e 's/,,/, ,/g' | column -s, -t | less -#5 -N -S
+
+
+tmux attach -t base || tmux new -s base
