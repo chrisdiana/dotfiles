@@ -16,8 +16,10 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR=vim
 export LESSCHARSET=utf-8
 export TERM=xterm-256color
+# export TZ=US/Eastern
 
-# Load local .bashrc if it exists
+
+#Load local .bashrc if it exists
 test -f ~/.bashrc_local && source ~/.bashrc_local
 
 # Functions
@@ -56,6 +58,10 @@ search(){
     w3m $url
 }
 
+dict(){
+    echo $* | aspell pipe
+}
+
 alias g=search
 alias lastuser=lastLoggedInUsers
 
@@ -76,5 +82,10 @@ function pretty_tsv {
 }
 # cat file.csv | sed -e 's/,,/, ,/g' | column -s, -t | less -#5 -N -S
 
+
+# export PATH=~/.npm-global/bin:$PATH
+# export PATH=~/.local/bin:$PATH
+# export PATH=$PATH:~/apps/dasht/bin
+# export MANPATH=~/apps/man:$MANPATH
 
 tmux attach -t base || tmux new -s base
