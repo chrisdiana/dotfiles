@@ -55,7 +55,7 @@ search(){
     args="$@"
     query=${args// /+}
     url="https://google.com/search?q=$query"
-    w3m $url
+    w3m -M -no-mouse $url
 }
 
 dict(){
