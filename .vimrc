@@ -6,8 +6,8 @@ filetype off
 filetype plugin indent on
 syntax enable
 
-"colorscheme monokai
-colorscheme itg_flat
+colorscheme monokai_pro
+"colorscheme itg_flat
 
 set shiftwidth=4
 set tabstop=4

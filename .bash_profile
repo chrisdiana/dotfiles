@@ -64,6 +64,7 @@ dict(){
 
 alias g=search
 alias lastuser=lastLoggedInUsers
+alias hs='python -m SimpleHTTPServer 8080'
 
 
 # For Debian/Ubuntu
@@ -88,4 +89,12 @@ function pretty_tsv {
 # export PATH=$PATH:~/apps/dasht/bin
 # export MANPATH=~/apps/man:$MANPATH
 
-tmux attach -t base || tmux new -s base
+#tmux attach -t base || tmux new -s base
+if [[ "$TMUX" == "" ]] && [[ "$SSH_CONNECTION" != "" ]]; then
+    WHOAMI=$(whoami)
+    if tmux has-session -t $WHOAMI 2>/dev/null; then
+    tmux -2 attach-session -t $WHOAMI
+    else
+        tmux -2 new-session -s $WHOAMI
+    fi
+fi
