@@ -18,10 +18,6 @@ export LESSCHARSET=utf-8
 export TERM=xterm-256color
 # export TZ=US/Eastern
 
-
-#Load local .bashrc if it exists
-test -f ~/.bashrc_local && source ~/.bashrc_local
-
 # Functions
 # -----------------------------------------------------
 
@@ -62,9 +58,17 @@ dict(){
     echo $* | aspell pipe
 }
 
+editTodo(){
+    # alias todo='editTodo <gist-id>
+    gist_id=$1
+    todo_file="todo.txt"
+    gh gist edit $gist_id -f $todo_file
+}
+
 alias g=search
 alias lastuser=lastLoggedInUsers
 alias hs='python -m SimpleHTTPServer 8080'
+alias todo=editTodo
 
 
 # For Debian/Ubuntu
@@ -98,3 +102,9 @@ if [[ "$TMUX" == "" ]] && [[ "$SSH_CONNECTION" != "" ]]; then
         tmux -2 new-session -s $WHOAMI
     fi
 fi
+
+#Load local .bashrc if it exists
+if [ -f ~/.bashrc_local ]; then
+    . ~/.bashrc_local
+fi
+
