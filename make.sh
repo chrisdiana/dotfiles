@@ -1,16 +1,17 @@
 #!/bin/bash
 ############################
-# .make.sh
+# ./make.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/.dotfiles
 ############################
 
-########## Variables
+# dotfiles directory
+dir=~/.dotfiles
 
-dir=~/.dotfiles                    		# dotfiles directory
-olddir=~/dotfiles_old             		# old dotfiles backup directory
-files="bash_profile tmux.conf vimrc vim gitconfig"    	# list of files/folders to symlink in homedir
+# old dotfiles backup directory
+olddir=~/dotfiles_old
 
-##########
+# list of files/folders to symlink in homedir
+files="bash_profile tmux.conf vimrc vim gitconfig gitignore sqliterc flake8"
 
 #move dotfiles to .dotfiles hidden folder
 mv ~/dotfiles $dir
@@ -34,7 +35,7 @@ for file in $files; do
 done
 
 # check if vundle exists, if not create it
-#if [ ! -d "$dir"/.vim/bundle/Vundle.vim/ ]
-#then
-#	git clone https://github.com/gmarik/Vundle.vim.git ~/.dotfiles/.vim/bundle/Vundle.vim
-#fi
+# if [ ! -d "$dir"/.vim/bundle/Vundle.vim/ ]
+# then
+# 	git clone https://github.com/gmarik/Vundle.vim.git ~/.dotfiles/.vim/bundle/Vundle.vim
+# fi

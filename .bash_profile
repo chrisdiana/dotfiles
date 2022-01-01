@@ -3,20 +3,16 @@
 # Shortcuts
 # -----------------------------------------------------
 alias ll='ls -lah'
-alias t='vi -c "set nonumber" "$PM_PATH"/todo.txt'
-alias ts='git -C $PM_PATH add . ; git -C $PM_PATH commit -am "updates"; git -C $PM_PATH push;'
-alias tg='git -C $PM_PATH pull;'
 
 # Colors
 # -----------------------------------------------------
-#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\n\$ "
 export PS1="\[[\033[32m\]\w\[\033[m\]]\n\$ "
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR=vim
 export LESSCHARSET=utf-8
 export TERM=xterm-256color
-# export TZ=US/Eastern
+export TZ=US/Eastern
 
 # Functions
 # -----------------------------------------------------
@@ -70,7 +66,6 @@ alias lastuser=lastLoggedInUsers
 alias hs='python -m SimpleHTTPServer 8080'
 alias todo=editTodo
 
-
 # For Debian/Ubuntu
 function pretty_csv {
     column -t -s, -n "$@" | less -F -S -X -K
@@ -80,20 +75,14 @@ function pretty_tsv {
 }
 # For non-Debian systems
 function pretty_csv {
+    # cat file.csv | sed -e 's/,,/, ,/g' | column -s, -t | less -#5 -N -S
     perl -pe 's/((?<=,)|(?<=^)),/ ,/g;' "$@" | column -t -s, | less  -F -S -X -K
 }
 function pretty_tsv {
     perl -pe 's/((?<=\t)|(?<=^))\t/ \t/g;' "$@" | column -t -s $'\t' | less  -F -S -X -K
 }
-# cat file.csv | sed -e 's/,,/, ,/g' | column -s, -t | less -#5 -N -S
 
-
-# export PATH=~/.npm-global/bin:$PATH
-# export PATH=~/.local/bin:$PATH
-# export PATH=$PATH:~/apps/dasht/bin
-# export MANPATH=~/apps/man:$MANPATH
-
-#tmux attach -t base || tmux new -s base
+# attach tmux on login
 if [[ "$TMUX" == "" ]] && [[ "$SSH_CONNECTION" != "" ]]; then
     WHOAMI=$(whoami)
     if tmux has-session -t $WHOAMI 2>/dev/null; then
@@ -107,4 +96,3 @@ fi
 if [ -f ~/.bashrc_local ]; then
     . ~/.bashrc_local
 fi
-
