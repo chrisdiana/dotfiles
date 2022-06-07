@@ -65,6 +65,7 @@ alias g=search
 alias lastuser=lastLoggedInUsers
 alias hs='python -m SimpleHTTPServer 8080'
 alias todo=editTodo
+alias flake8='flake8 --format %(row)d:%(col)d: %(code)s %(text)s --max-line-length 120'
 
 # For Debian/Ubuntu
 function pretty_csv {
@@ -96,3 +97,5 @@ fi
 if [ -f ~/.bashrc_local ]; then
     . ~/.bashrc_local
 fi
+
+

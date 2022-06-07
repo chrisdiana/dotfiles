@@ -13,6 +13,8 @@ olddir=~/dotfiles_old
 # list of files/folders to symlink in homedir
 files="bash_profile tmux.conf vimrc vim gitconfig gitignore sqliterc flake8"
 
+echo "source ~/.bash_profile >> ~/.bash_profile"
+
 #move dotfiles to .dotfiles hidden folder
 mv ~/dotfiles $dir
 
