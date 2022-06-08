@@ -1,0 +1,36 @@
+#!/bin/bash
+############################
+# . setup
+# This script creates symlinks from the home directory to dotfiles in ~/.dotfiles
+# Any previous dotfiles will be moved to the backup dotfiles directory
+############################
+
+# list of files/folders to symlink in homedir
+FILES="tmux.conf vimrc vim gitconfig"
+
+DOTFILES_DIR=~/.dotfiles
+BACKUP_DOTFILES_DIR=~/dotfiles_backup
+
+echo "Moving dotfiles to .dotfiles..."
+mv ~/dotfiles $DOTFILES_DIR
+echo "...done"
+echo
+
+echo "Creating $BACKUP_DOTFILES_DIR for backup of any existing dotfiles"
+mkdir -p $BACKUP_DOTFILES_DIR
+echo "...done"
+echo
+
+for file in $FILES; do
+    echo "Moving any existing dotfiles from ~/ to $BACKUP_DOTFILES_DIR"
+    if [ -f $file ]; then
+	    mv ~/.$file $BACKUP_DOTFILES_DIR
+    else
+	    echo "$file not found. skipping..."
+    fi
+    echo "Creating symlink to $file in home directory."
+    ln -s $DOTFILES_DIR/.$file ~/.$file
+done
+
+echo "source ~/.dotfiles/.profile" >> ~/.bash_profile
+source ~/.bash_profile

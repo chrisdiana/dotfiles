@@ -1,0 +1,50 @@
+#!/bin/bash
+############################
+# . install
+############################
+
+PACKAGES=(
+	"vim"
+	"tmux"
+	"screen"
+	"w3m"
+    "htop"
+    "mosh"
+    "git"
+	"sqlite3"
+	"python3"
+    "python3-virtualenv"
+    "pigz"
+    "openvpn"
+    "openssh"
+    "wget"
+    "curl"
+    "nodejs"
+    "npm"
+    "aws-cli"
+)
+
+PYTHON_PACKAGES=(
+  "visidata"
+  "fire"
+  "pandas"
+  "click"
+  "athenacli"
+)
+
+# install packages
+if [ "$(uname)" == "Darwin" ]; then
+	echo 'running MacOS...'
+    brew update
+	brew install ${PACKAGES[@]}
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ] || [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+	echo 'running Windows...'
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+	echo 'running Linux...'
+    sudo apt update
+	sudo apt install -y ${PACKAGES[@]}
+fi
+
+# install python packages
+pip3 install ${PYTHON_PACKAGES[@]}
+

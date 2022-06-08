@@ -1,6 +1,10 @@
-## Dotfiles
+# Dotfiles
 
-Run `sh ~/dotfiles/make.sh` to create a new dotfiles directory and symlink appropriate files.
+### Setup
 
-* All dotfiles symlinked from `~/`
-* Private and box specific bash settings held in `~/.bashrc_local`
+Creates a new dotfiles directory and symlinks for files.
+
+```
+$ git clone git@github.com:chrisdiana/dotfiles.git
+$ . dotfiles/setup
+```
