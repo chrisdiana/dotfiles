@@ -14,6 +14,7 @@ set expandtab
 set softtabstop=4
 set shiftround
 set autoindent
+set smartindent
 set nonumber
 set showcmd
 set wildmenu
@@ -57,6 +58,9 @@ au BufRead,BufNewFile *.js,*.html,*.css,*.vue,*.php,*.yml,*.json
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix
+
+let g:html_indent_script1 = "zero"
+let g:html_indent_style1 = "zero"
 
 " PEP8
 autocmd BufWritePost *.py call Flake8()
