@@ -68,13 +68,17 @@ let g:html_indent_style1 = "zero"
 
 " PEP8
 autocmd BufWritePost *.py call Flake8()
+" CTRL-W + z to close preview
 function Flake8()
     let filename=expand('%:p')
     " move to preview window and create one if it doesn't yet exist
     silent! wincmd P
     if ! &previewwindow
         " use 'new' instead of 'vnew' for a horizontal split
-        new
+        exec 'set splitbelow'
+        10new
+        exec 'setlocal buftype=nofile'
+        exec 'setlocal winheight=10'
         set previewwindow
     endif
     execute '%d|silent 0r!flake8 --format "'.'\%(row)d:\%(col)d: \%(code)s \%(text)s'.'" --max-line-length 120 ' . filename
