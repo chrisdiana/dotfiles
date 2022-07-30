@@ -49,6 +49,10 @@ set foldlevel=2
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
+" copy/paste to clipboard
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif"
+set clipboard& clipboard^=unnamed,unnamedplus
+
 " Web
 au BufRead,BufNewFile *.js,*.html,*.css,*.vue,*.php,*.yml,*.json
     \ set tabstop=2 |
@@ -60,8 +64,18 @@ au BufRead,BufNewFile *.js,*.html,*.css,*.vue,*.php,*.yml,*.json
 
 " PEP8
 autocmd BufWritePost *.py call Flake8()
-let g:flake8_cmd='flake8 --config ~/.dotfiles/.flake8'
-let g:flake8_quickfix_height=2
+function Flake8()
+    let filename=expand('%:p')
+    " move to preview window and create one if it doesn't yet exist
+    silent! wincmd P
+    if ! &previewwindow
+        " use 'new' instead of 'vnew' for a horizontal split
+        new
+        set previewwindow
+    endif
+    execute '%d|silent 0r!flake8 --format "'.'\%(row)d:\%(col)d: \%(code)s \%(text)s'.'" --max-line-length 120 ' . filename
+    wincmd p
+endfunction
 highlight BadWhitespace ctermbg=red guibg=red
 au BufRead,BufNewFile *.py,*.pyw,*.r match BadWhitespace /^\t\+/
 au BufRead,BufNewFile *.py,*.pyw,*.r,*.c,*.h match BadWhitespace /\s\+$/
