@@ -82,7 +82,7 @@ function Flake8()
         set previewwindow
     endif
     execute '%d|silent 0r!flake8 --format "'.'\%(row)d:\%(col)d: \%(code)s \%(text)s'.'" --max-line-length 120 ' . filename
-    if line('$') == 2
+    if line('$') == 1
         execute ':q!'
     endif
     wincmd p
