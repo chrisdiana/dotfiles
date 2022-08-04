@@ -29,6 +29,7 @@ set cm=blowfish2 " use :X to encrypt
 set backupdir=~/.vim/swapfiles/.backup/,/tmp//
 set directory=~/.vim/swapfiles/.swp/,/tmp//
 set undodir=~/.vim/swapfiles/.undo/,/tmp//
+set autochdir
 
 nnoremap { gT
 nnoremap } gt

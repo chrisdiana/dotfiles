@@ -46,6 +46,5 @@ alias ll='ls -lah'
 alias g=search
 alias lastuser=lastLoggedInUsers
 alias hs='python3 -m http.server 8080'
-alias flake8='flake8 --format "%(row)d:%(col)d: %(code)s %(text)s" --max-line-length 120'
 alias sqlite3='sqlite3 -header -column'
 alias dict=dict
