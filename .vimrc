@@ -1,4 +1,15 @@
 " VIMRC
+"
+" :vs/ex <partial file name><Tab>   file search
+" :X                                encrypt file
+" <C-W><C-J|K|L|H>                  split navigation
+" <C-W> + z                         close preview
+" gf                                cursor over filename and go to file
+" /foo.*bar                         search content in file
+" :vimgrep /foo/ **/*               search content across files
+" :! <cmd> %                        run command on current file
+" :sh                               enter shell
+" :s%/foo/bar/gcc                   find and replace
 
 set nocompatible
 filetype off
@@ -24,8 +35,9 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
+set magic
 set encoding=utf-8
-set cm=blowfish2 " use :X to encrypt
+set cm=blowfish2
 set backupdir=~/.vim/swapfiles/.backup/,/tmp//
 set directory=~/.vim/swapfiles/.swp/,/tmp//
 set undodir=~/.vim/swapfiles/.undo/,/tmp//
@@ -38,9 +50,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 inoremap jj <Esc>
-
-set magic
-" search for /foo.*bar
+nnoremap <C-i> :copen <CR>
 
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -48,14 +58,10 @@ set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=2
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-
-" copy/paste to clipboard
-autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif"
-set clipboard& clipboard^=unnamed,unnamedplus
 
 " Web
+let g:html_indent_script1 = "zero"
+let g:html_indent_style1 = "zero"
 au BufRead,BufNewFile *.js,*.html,*.css,*.vue,*.php,*.yml,*.json
     \ set tabstop=2 |
     \ set softtabstop=2 |
@@ -64,20 +70,14 @@ au BufRead,BufNewFile *.js,*.html,*.css,*.vue,*.php,*.yml,*.json
     \ set autoindent |
     \ set fileformat=unix
 
-let g:html_indent_script1 = "zero"
-let g:html_indent_style1 = "zero"
-
 " PEP8
 autocmd BufWritePost *.py call Flake8()
-" CTRL-W + z to close preview
 function Flake8()
     let filename=expand('%:p')
-    " move to preview window and create one if it doesn't yet exist
     silent! wincmd P
     if ! &previewwindow
-        " use 'new' instead of 'vnew' for a horizontal split
         exec 'set splitbelow'
-        10new
+        10new " new or vnew
         exec 'setlocal buftype=nofile'
         exec 'setlocal winheight=10'
         set previewwindow
@@ -101,3 +101,5 @@ au BufRead,BufNewFile *.py,*.pyw,*.r,*.c,*.h
     "\ set textwidth=79 |
     "\ set colorcolumn=80 |
     \ let python_highlight_all=1
+
+
