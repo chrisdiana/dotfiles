@@ -1,0 +1,20 @@
+:vs/ex <partial file name><Tab>   file search
+:X                                encrypt file
+<C-W><C-J|K|L|H>                  split navigation
+<C-W> + z                         close preview
+gf                                cursor over filename and go to file
+%s/, /\r/gcc                      new line for each item in json
+ctrl + i / o                      navigate previous/next window from gf
+/foo.*bar                         search content in file
+:vimgrep /foo/ **/*               search content across files
+:! <cmd> %                        run command on current file
+:sh                               enter shell
+:s%/foo/bar/gcc                   find and replace
+visual select + shift + j         collapse lines
+gq                                split line
+:vs *<tab-search>                 search for files
+Ctrl-v + $ + shift+a              insert at last part of each line
+Ctrl-v + $ + :norm $xx            delete last part of line
+visual select + "*y               yank text to clipboard
+q<letter><macro>q                 record macro
+<number>@<letter>                 run macro

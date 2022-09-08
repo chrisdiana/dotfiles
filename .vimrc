@@ -1,15 +1,4 @@
 " VIMRC
-"
-" :vs/ex <partial file name><Tab>   file search
-" :X                                encrypt file
-" <C-W><C-J|K|L|H>                  split navigation
-" <C-W> + z                         close preview
-" gf                                cursor over filename and go to file
-" /foo.*bar                         search content in file
-" :vimgrep /foo/ **/*               search content across files
-" :! <cmd> %                        run command on current file
-" :sh                               enter shell
-" :s%/foo/bar/gcc                   find and replace
 
 set nocompatible
 filetype off
@@ -17,7 +6,7 @@ filetype off
 filetype plugin indent on
 syntax enable
 
-colorscheme itg_flat
+colorscheme ghdark
 
 set shiftwidth=4
 set tabstop=4
@@ -41,6 +30,7 @@ set cm=blowfish2
 set backupdir=~/.vim/swapfiles/.backup/,/tmp//
 set directory=~/.vim/swapfiles/.swp/,/tmp//
 set undodir=~/.vim/swapfiles/.undo/,/tmp//
+set wildignore+=node_modules/*,__pycache__/*,*.egg-info/*
 set autochdir
 
 nnoremap { gT
@@ -50,7 +40,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 inoremap jj <Esc>
-nnoremap <C-i> :copen <CR>
+" nnoremap <C-i> :copen <CR>
+com! FormatJSON %!python -m json.tool
+
 
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -71,23 +63,22 @@ au BufRead,BufNewFile *.js,*.html,*.css,*.vue,*.php,*.yml,*.json
     \ set fileformat=unix
 
 " PEP8
-autocmd BufWritePost *.py call Flake8()
-function Flake8()
-    let filename=expand('%:p')
-    silent! wincmd P
-    if ! &previewwindow
-        exec 'set splitbelow'
-        10new " new or vnew
-        exec 'setlocal buftype=nofile'
-        exec 'setlocal winheight=10'
-        set previewwindow
-    endif
-    execute '%d|silent 0r!flake8 --format "'.'\%(row)d:\%(col)d: \%(code)s \%(text)s'.'" --max-line-length 120 ' . filename
-    if line('$') == 1
-        execute ':q!'
-    endif
-    wincmd p
-endfunction
+" autocmd BufWritePost *.py call Flake8()
+" function Flake8()
+"     let filename=expand('%:p')
+"     silent! wincmd P
+"     if ! &previewwindow
+"         exec 'set splitbelow'
+"         10new " new or vnew
+"         exec 'setlocal buftype=nofile'
+"         exec 'setlocal winheight=10'
+"         set previewwindow
+"     endif
+"     if line('$') == 1
+"         execute ':q!'
+"     endif
+"     wincmd p
+" endfunction
 highlight BadWhitespace ctermbg=red guibg=red
 au BufRead,BufNewFile *.py,*.pyw,*.r match BadWhitespace /^\t\+/
 au BufRead,BufNewFile *.py,*.pyw,*.r,*.c,*.h match BadWhitespace /\s\+$/
